@@ -27,3 +27,24 @@ class Conta(db.Model, BaseModelMixin):
 
         if commit:
             self.save()
+
+    def withdraw_money(self, value: float, commit: bool = True) -> bool:
+        """withdraw money in this account"""
+        success: bool = False
+        decimal_value: Decimal = Decimal(value)
+
+        if self.saldo < decimal_value:
+            self.saldo -= decimal_value
+            success = True
+
+            if commit:
+                self.save()
+
+        return success
+
+    def block(self, commit: bool = True):
+        """Block this account"""
+        self.flag_ativo = False
+
+        if commit:
+            self.save()
