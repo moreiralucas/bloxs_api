@@ -12,5 +12,4 @@ class AccountWithdrawIn(AccountWithdrawBase):
 
 class AccountWithdrawOut(AccountWithdrawBase):
     """Schema Output AccountWithdraw"""
-    saldo = fields.Float()
     message = fields.String()

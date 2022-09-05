@@ -18,6 +18,5 @@ def withdraw(account_id, data):
         message: str = "insufficient funds"
 
     return {
-        "message": message,
-        "saldo": account.saldo
+        "message": message
     }
