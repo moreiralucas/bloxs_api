@@ -1,9 +1,11 @@
 """Schema Module"""
-from .conta import AccountIn, AccountOut
+from .account import AccountIn, AccountOut
 from .transacao import TransactionIn, TransactionOut
 from .balance import AccountBalanceOut
 from .deposit import AccountDepositIn, AccountDepositOut
 from .block import AccountBlockOut
+from .withdraw import AccountWithdrawIn, AccountWithdrawOut
+
 
 __all__ = [
     "AccountIn",
@@ -13,4 +15,7 @@ __all__ = [
     "AccountBalanceOut",
     "AccountDepositIn",
     "AccountDepositOut",
+    "AccountBlockOut",
+    "AccountWithdrawIn",
+    "AccountWithdrawOut",
 ]
