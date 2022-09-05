@@ -12,16 +12,14 @@ MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD")
 MYSQL_PORT = os.environ.get("MYSQL_PORT")
 ENVIRONMENT = os.environ.get("ENVIRONMENT", "dev")
 
-SQLALCHEMY_DATABASE_URI = (
-    f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}"
-    f"@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
-)
-
 
 class Config(object):
     """SQLAlchemy base config settings"""
 
-    SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI
+    SQLALCHEMY_DATABASE_URI = (
+        f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}"
+        f"@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+    )
     # SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Flask Settings
@@ -39,8 +37,11 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     """SQLAlchemy test config settings"""
-
-    database = "heroes-database-test"
+    SQLALCHEMY_DATABASE_URI = (
+        f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}"
+        f"@{MYSQL_HOST}:{MYSQL_PORT}/test{MYSQL_DATABASE}"
+    )
+    database = "testbloxsdatabase"
     DEBUG = True
     TESTING = True
     ENVIRONMENT = "test"

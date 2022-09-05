@@ -10,8 +10,8 @@ def init_database(app: Flask, database: SQLAlchemy):
     """Create all models of database"""
     if ENVIRONMENT != "test":
         with app.app_context():
-            database.create_all()
-
-            migrate = Migrate(app, database)
+            migrate = Migrate()
+            from models import Pessoa, Conta, Transacao
+            migrate.init_app(app, database)
 
             return migrate

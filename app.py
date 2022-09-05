@@ -1,9 +1,6 @@
 """Start Flask Module"""
 from apiflask import APIFlask
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-
-from models.base_mixin import db
+from models import db, Pessoa, Conta, Transacao
 from utils import create_app, init_database
 
 app: APIFlask = create_app(db)
