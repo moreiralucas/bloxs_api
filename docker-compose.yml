@@ -5,7 +5,6 @@ services:
     build: .
     container_name: flask_app
     restart: unless-stopped
-    command: flask run
     env_file:
       - ./.env
     volumes:
