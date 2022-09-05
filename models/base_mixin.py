@@ -1,6 +1,8 @@
 """Base Models Module"""
 from flask_sqlalchemy import SQLAlchemy
+
 db: SQLAlchemy = SQLAlchemy()
+
 
 class BaseModelMixin:
     """Base Model Class"""
