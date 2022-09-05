@@ -25,7 +25,7 @@ def test_withdraw_account(app):
         tipo_conta=1
     )
     conta.save()
-    conta.add_money(2000.0)
+    conta.add_money(800.0)
 
     client = app.test_client()
     url = f'/account/{conta.id_conta}/withdraw'
@@ -37,3 +37,14 @@ def test_withdraw_account(app):
     response: TestResponse = client.post(url, data)
     assert response.status_code == 200
     assert response.json["message"] == "success"
+
+    client = app.test_client()
+    url = f'/account/{conta.id_conta}/withdraw'
+    data: Dict = {
+        "id_pessoa": pessoa.id_pessoa,
+        "valor": 500.0
+    }
+
+    response: TestResponse = client.post(url, data)
+    assert response.status_code == 200
+    assert response.json["message"] == "insufficient funds"
