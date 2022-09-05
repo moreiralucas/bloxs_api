@@ -1,7 +1,7 @@
 """Conta Model Module"""
 from datetime import datetime
+from decimal import Decimal
 from .base_mixin import BaseModelMixin, db
-
 
 class Conta(db.Model, BaseModelMixin):
     """Conta Model class"""
@@ -20,3 +20,10 @@ class Conta(db.Model, BaseModelMixin):
             self.saldo = 0.0
             self.data_criacao = datetime.now()
         return super().save()
+
+    def add_money(self, value: float, commit: bool = True):
+        """Add money in this account"""
+        self.saldo += Decimal(value)
+
+        if commit:
+            self.save()

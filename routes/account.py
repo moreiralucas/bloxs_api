@@ -9,7 +9,7 @@ from schemas import AccountIn, AccountOut
 def create_account(data):
     """Create account"""
 
-    account: Conta = Conta(**data, saldo=0.0)
+    account: Conta = Conta(**data)
     account.save()
 
     return account

@@ -20,7 +20,6 @@ class Config(object):
         f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}"
         f"@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
     )
-    # SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Flask Settings
     DEBUG = False
