@@ -2,7 +2,7 @@
 from .base_mixin import BaseModelMixin, db
 
 
-class Pessoa(BaseModelMixin):
+class Pessoa(db.Model, BaseModelMixin):
     """Pessoa Model class"""
 
     id_pessoa = db.Column("idPessoa", db.Integer, primary_key=True, autoincrement=True)

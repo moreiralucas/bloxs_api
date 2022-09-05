@@ -2,7 +2,7 @@
 from .base_mixin import BaseModelMixin, db
 
 
-class Transacao(BaseModelMixin):
+class Transacao(db.Model, BaseModelMixin):
     """Transacao Model class"""
 
     id_transacao = db.Column(
