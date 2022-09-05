@@ -1,8 +1,9 @@
 """Conta Model Module"""
+from datetime import datetime
 from .base_mixin import BaseModelMixin, db
 
 
-class Conta(BaseModelMixin):
+class Conta(db.Model, BaseModelMixin):
     """Conta Model class"""
 
     id_conta = db.Column("idConta", db.Integer, primary_key=True, autoincrement=True)
@@ -12,3 +13,10 @@ class Conta(BaseModelMixin):
     flag_ativo = db.Column("flagAtivo", db.Boolean)
     tipo_conta = db.Column("tipoConta", db.Integer)
     data_criacao = db.Column("dataCriacao", db.Date)
+
+    def save(self):
+        """Override save method"""
+        if self.id_conta is None:
+            self.saldo = 0.0
+            self.data_criacao = datetime.now()
+        return super().save()
