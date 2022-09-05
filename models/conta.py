@@ -1,6 +1,7 @@
 """Conta Model Module"""
 from datetime import datetime
 from decimal import Decimal
+from typing import Dict
 from .base_mixin import BaseModelMixin, db
 
 class Conta(db.Model, BaseModelMixin):
@@ -28,19 +29,27 @@ class Conta(db.Model, BaseModelMixin):
         if commit:
             self.save()
 
-    def withdraw_money(self, value: float, commit: bool = True) -> bool:
+    def withdraw_money(self, value: float, commit: bool = True) -> str:
         """withdraw money in this account"""
-        success: bool = False
+        result_index: str = "insufficient_funds"
         decimal_value: Decimal = Decimal(value)
 
-        if self.saldo < decimal_value:
+        if not self.flag_ativo:
+            result_index = "blocked_account"
+        elif self.saldo < decimal_value:
+            result_index = "success"
             self.saldo -= decimal_value
-            success = True
 
             if commit:
                 self.save()
 
-        return success
+        result_dict: Dict[str, str] = {
+            "success": "success",
+            "blocked_account": "blocked account",
+            "insufficient_funds": "insufficient funds"
+        }
+
+        return result_dict[result_index]
 
     def block(self, commit: bool = True):
         """Block this account"""

@@ -12,11 +12,8 @@ def withdraw(account_id, data):
     """With draw money"""
 
     account: Conta = Conta.query.filter_by(id_conta=account_id).first()
-    if account.withdraw_money(data["valor"]):
-        message: str = "success"
-    else:
-        message: str = "insufficient funds"
+    result: str = account.withdraw_money(data["valor"])
 
     return {
-        "message": message
+        "message": result
     }
