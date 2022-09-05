@@ -1,5 +1,4 @@
-"""Deposti test Module"""
-import json
+"""Deposit test Module"""
 from typing import Dict
 from werkzeug.test import TestResponse
 from models import Conta, Pessoa

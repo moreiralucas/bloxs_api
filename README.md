@@ -39,9 +39,12 @@ Implementar os endpoints listados abaixo
 
 - [x] Criação de uma conta;
 - [x] Depósito em uma conta;
+  - [ ] Conta bloqueada não pode receber depósito
 - [x] Consulta de saldo em determinada conta;
-- [ ] Saque em uma conta;
-- [ ] Bloqueio de uma conta;
+- [x] Saque em uma conta;
+  - [ ] Conta bloqueada não pode realizar saque
+- [x] Bloqueio de uma conta;
 - [ ] Extrato de transações de uma conta;
 - [ ] Fix pytest configuration to load env with ENVIRONMENT=test
- 
+- [ ] Alterar criação de models de Pessoa e Conta para fixture
+- [ ] Adicionar o Faker para criar as fixtures e demais dados fakes
