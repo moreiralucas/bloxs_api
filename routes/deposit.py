@@ -11,6 +11,8 @@ def deposit_account(account_id, data):
     """Deposit money in a given account"""
 
     account: Conta = Conta.query.filter_by(id_conta=account_id).first()
-    account.add_money(data["valor"])
+    result: str = account.add_money(data["valor"])
 
-    return account
+    return {
+        "message": result
+    }

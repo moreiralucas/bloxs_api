@@ -13,3 +13,4 @@ class AccountDepositIn(AccountDeposit):
 
 class AccountDepositOut(AccountDeposit):
     """Schema Output AccountDeposit"""
+    message = fields.String()
