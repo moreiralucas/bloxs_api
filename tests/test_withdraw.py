@@ -28,23 +28,23 @@ def test_withdraw_account(app):
     conta.add_money(800.0)
 
     client = app.test_client()
-    url = f'/account/{conta.id_conta}/withdraw'
+    url: str = f'/account/{conta.id_conta}/withdraw'
     data: Dict = {
         "id_pessoa": pessoa.id_pessoa,
         "valor": 500.0
     }
 
-    response: TestResponse = client.post(url, data)
+    response: TestResponse = client.post(url, json=data)
     assert response.status_code == 200
     assert response.json["message"] == "success"
 
     client = app.test_client()
-    url = f'/account/{conta.id_conta}/withdraw'
+    url: str = f'/account/{conta.id_conta}/withdraw'
     data: Dict = {
         "id_pessoa": pessoa.id_pessoa,
         "valor": 500.0
     }
 
-    response: TestResponse = client.post(url, data)
+    response: TestResponse = client.post(url, json=data)
     assert response.status_code == 200
     assert response.json["message"] == "insufficient funds"

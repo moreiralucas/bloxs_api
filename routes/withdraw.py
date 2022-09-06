@@ -5,7 +5,7 @@ from schemas import AccountWithdrawIn, AccountWithdrawOut
 
 
 
-@app.post("/account/<int:account_id>/withdraw/")
+@app.post("/account/<int:account_id>/withdraw")
 @app.input(AccountWithdrawIn)
 @app.output(AccountWithdrawOut)
 def withdraw(account_id, data):

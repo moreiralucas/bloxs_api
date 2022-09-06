@@ -8,6 +8,7 @@ class AccountWithdrawBase(Schema):
 class AccountWithdrawIn(AccountWithdrawBase):
     """Schema Input AccountWithdraw"""
     valor = fields.Float()
+    id_pessoa = fields.Integer()
 
 
 class AccountWithdrawOut(AccountWithdrawBase):
