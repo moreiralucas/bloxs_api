@@ -24,10 +24,15 @@ class Conta(db.Model, BaseModelMixin):
 
     def add_money(self, value: float, commit: bool = True):
         """Add money in this account"""
-        self.saldo += Decimal(value)
 
-        if commit:
-            self.save()
+        if self.flag_ativo:
+            self.saldo += Decimal(value)
+
+            if commit:
+                self.save()
+            return "success"
+
+        return "blocked account"
 
     def withdraw_money(self, value: float, commit: bool = True) -> str:
         """withdraw money in this account"""
@@ -36,7 +41,7 @@ class Conta(db.Model, BaseModelMixin):
 
         if not self.flag_ativo:
             result_index = "blocked_account"
-        elif self.saldo < decimal_value:
+        elif self.saldo >= decimal_value:
             result_index = "success"
             self.saldo -= decimal_value
 
