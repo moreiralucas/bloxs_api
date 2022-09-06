@@ -8,8 +8,14 @@ from schemas import AccountIn, AccountOut
 @app.output(AccountOut, status_code=201)
 def create_account(data):
     """Create account"""
+    status_code: int = 200
 
-    account: Conta = Conta(**data)
-    account.save()
+    try:
 
-    return account
+        account: Conta = Conta(**data)
+        account.save()
+    except Exception as err:  # pylint: disable=broad-except
+        result: str = "Internal error"
+        status_code = 500
+
+    return account, status_code

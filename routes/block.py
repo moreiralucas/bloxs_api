@@ -9,6 +9,14 @@ from models import Conta
 def block_account(account_id):
     """Block an account from a given account_id"""
 
-    account: Conta = Conta.query.get_or_404(account_id)
-    account.block()
-    return account
+    try:
+        account: Conta = Conta.query.get_or_404(account_id)
+        account.block()
+    except Exception as err:  # pylint: disable=broad-except
+        return {
+            "message": "Internal error"
+        }, 500
+
+    return {
+        "flag_ativo" :account.flag_ativo,
+    }, 200
