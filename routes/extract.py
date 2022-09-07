@@ -2,9 +2,11 @@
 from app import app
 from models import Transacao
 from schemas import ExtractDepositOut
+from utils import internal_server_error, success_response
+
 
 @app.get("/account/<int:account_id>/extract")
-@app.output(ExtractDepositOut)
+@app.output(ExtractDepositOut(many=True))
 def extract_account(account_id):
     """Extract endpoint"""
 
@@ -13,9 +15,7 @@ def extract_account(account_id):
             id_conta=account_id,
         ).all()
     except Exception as error:
-        return {
-            "message": "Internal error"
-        }, 500
+        return internal_server_error(error)
 
-    return transacao
+    return success_response(transacao)
     # TODO: Add list of transaction in return of schema
