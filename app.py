@@ -1,11 +1,12 @@
 """Start Flask Module"""
 from apiflask import APIFlask
-from models import db, Pessoa, Conta, Transacao
+from models import db
 from utils import create_app, init_database
 
 app: APIFlask = create_app(db)
 migrate = init_database(app, db)
 
+# pylint: disable=wrong-import-position,unused-import
 import routes.account
 import routes.balance
 import routes.block

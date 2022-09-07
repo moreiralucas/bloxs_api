@@ -4,6 +4,7 @@ from decimal import Decimal
 from typing import Dict
 from .base_mixin import BaseModelMixin, db
 
+
 class Conta(db.Model, BaseModelMixin):
     """Conta Model class"""
 
@@ -51,7 +52,7 @@ class Conta(db.Model, BaseModelMixin):
         result_dict: Dict[str, str] = {
             "success": "success",
             "blocked_account": "blocked account",
-            "insufficient_funds": "insufficient funds"
+            "insufficient_funds": "insufficient funds",
         }
 
         return result_dict[result_index]

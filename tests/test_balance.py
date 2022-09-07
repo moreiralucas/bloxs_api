@@ -3,7 +3,6 @@ from werkzeug.test import TestResponse
 from models import Conta
 
 
-
 def test_get_balance(app, conta: Conta):
     """
     GIVEN a account id
@@ -12,7 +11,7 @@ def test_get_balance(app, conta: Conta):
     """
 
     client = app.test_client()
-    url: str = f'/account/{conta.id_conta}/balance'
+    url: str = f"/account/{conta.id_conta}/balance"
 
     response: TestResponse = client.get(url)
     assert response.status_code == 200

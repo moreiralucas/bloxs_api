@@ -13,12 +13,12 @@ def test_create_account(app, pessoa: Pessoa):
     """
 
     client = app.test_client()
-    url: str = '/account'
+    url: str = "/account"
     data: Dict = {
         "id_pessoa": pessoa.id_pessoa,
         "limite_saque_diario": "1000.00",
         "flag_ativo": True,
-        "tipo_conta": "1"
+        "tipo_conta": "1",
     }
 
     today: str = datetime.now().strftime("%Y-%m-%d")

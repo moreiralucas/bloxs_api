@@ -12,4 +12,5 @@ class AccountBalanceIn(AccountBalance):
 
 class AccountBalanceOut(AccountBalance):
     """Schema Output AccountBalance"""
+
     saldo = fields.Float()

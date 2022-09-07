@@ -3,6 +3,7 @@ from datetime import datetime
 from app import app
 from models import Conta, Transacao
 from schemas import AccountDepositIn, AccountDepositOut
+from utils import internal_server_error, success_response
 
 
 @app.put("/account/<int:account_id>/deposit")
@@ -10,7 +11,6 @@ from schemas import AccountDepositIn, AccountDepositOut
 @app.output(AccountDepositOut)
 def deposit_account(account_id, data):
     """Deposit money in a given account"""
-    status_code: int = 200
 
     try:
         account: Conta = Conta.query.filter_by(id_conta=account_id).first()
@@ -22,9 +22,6 @@ def deposit_account(account_id, data):
         )
         transacao.save()
     except Exception as error:  # pylint: disable=broad-except
-        result: str = "Internal error"
-        status_code = 500
+        return internal_server_error(error)
 
-    return {
-        "message": result
-    }, status_code
+    return success_response({"message": result})

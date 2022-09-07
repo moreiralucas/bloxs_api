@@ -12,11 +12,12 @@ def test_block_account(app, conta: Conta):
     """
 
     client = app.test_client()
-    url: str = f'/account/{conta.id_conta}/block'
+    url: str = f"/account/{conta.id_conta}/block"
 
     response: TestResponse = client.post(url)
     assert response.status_code == 200
     assert response.json["flag_ativo"] is False
+
 
 def test_dont_handle_withdraw(app, conta: Conta, pessoa: Pessoa):
     """
@@ -26,12 +27,12 @@ def test_dont_handle_withdraw(app, conta: Conta, pessoa: Pessoa):
     """
 
     client = app.test_client()
-    url: str = f'/account/{conta.id_conta}/block'
+    url: str = f"/account/{conta.id_conta}/block"
 
     response: TestResponse = client.post(url)
     assert response.status_code == 200
 
-    url: str = f'/account/{conta.id_conta}/withdraw'
+    url: str = f"/account/{conta.id_conta}/withdraw"
     data: Dict = {
         "valor": 500.0,
         "id_pessoa": pessoa.id_pessoa,
@@ -41,6 +42,7 @@ def test_dont_handle_withdraw(app, conta: Conta, pessoa: Pessoa):
     assert response.status_code == 200
     assert response.json["message"] == "blocked account"
 
+
 def test_dont_handle_deposit(app, conta: Conta):
     """
     GIVEN a block account and the account id
@@ -49,16 +51,14 @@ def test_dont_handle_deposit(app, conta: Conta):
     """
 
     client = app.test_client()
-    url: str = f'/account/{conta.id_conta}/block'
+    url: str = f"/account/{conta.id_conta}/block"
 
     response: TestResponse = client.post(url)
     assert response.status_code == 200
 
-    data: Dict = {
-        "valor": 100.0
-    }
+    data: Dict = {"valor": 100.0}
 
-    url: str = f'/account/{conta.id_conta}/deposit'
+    url: str = f"/account/{conta.id_conta}/deposit"
     response: TestResponse = client.put(url, json=data)
     assert response.status_code == 200
     assert response.json["message"] == "blocked account"

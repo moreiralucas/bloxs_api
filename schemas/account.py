@@ -4,6 +4,7 @@ from apiflask import Schema, fields
 
 class AccountBase(Schema):
     """Schema Base Account"""
+
     id_pessoa = fields.Integer()
     limite_saque_diario = fields.Float()
     flag_ativo = fields.Boolean()

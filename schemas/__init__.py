@@ -5,6 +5,7 @@ from .balance import AccountBalanceOut
 from .deposit import AccountDepositIn, AccountDepositOut
 from .block import AccountBlockOut
 from .withdraw import AccountWithdrawIn, AccountWithdrawOut
+from .extract import ExtractDepositIn, ExtractDepositOut
 
 
 __all__ = [
@@ -18,4 +19,6 @@ __all__ = [
     "AccountBlockOut",
     "AccountWithdrawIn",
     "AccountWithdrawOut",
+    "ExtractDepositIn",
+    "ExtractDepositOut",
 ]

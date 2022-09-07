@@ -1,8 +1,8 @@
 """Balance Module"""
-from datetime import datetime
 from app import app
 from schemas import AccountBalanceOut
-from models import Transacao, Conta
+from models import Conta
+from utils import internal_server_error, success_response
 
 
 @app.get("/account/<int:account_id>/balance")
@@ -13,8 +13,6 @@ def retrieve_balance(account_id):
     try:
         account: Conta = Conta.query.get_or_404(account_id)
     except Exception as error:
-        return {
-            "message": "Internal error"
-        }, 500
+        return internal_server_error(error)
 
-    return account, 200
+    return success_response(account)

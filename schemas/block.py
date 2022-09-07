@@ -12,4 +12,6 @@ class AccountBlockIn(AccountBlock):
 
 class AccountBlockOut(AccountBlock):
     """Schema Output AccountBlock"""
+
     flag_ativo = fields.Boolean()
+    message = fields.String()

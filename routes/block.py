@@ -3,6 +3,8 @@
 from app import app
 from schemas import AccountBlockOut
 from models import Conta
+from utils import internal_server_error, success_response
+
 
 @app.post("/account/<int:account_id>/block")
 @app.output(AccountBlockOut)
@@ -12,11 +14,7 @@ def block_account(account_id):
     try:
         account: Conta = Conta.query.get_or_404(account_id)
         account.block()
-    except Exception as err:  # pylint: disable=broad-except
-        return {
-            "message": "Internal error"
-        }, 500
+    except Exception as error:  # pylint: disable=broad-except
+        internal_server_error(error)
 
-    return {
-        "flag_ativo" :account.flag_ativo,
-    }, 200
+    return success_response({"flag_ativo": account.flag_ativo})
