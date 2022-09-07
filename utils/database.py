@@ -12,6 +12,7 @@ def init_database(app: Flask, database: SQLAlchemy):
         with app.app_context():
             migrate = Migrate()
             from models import Pessoa, Conta, Transacao
+
             migrate.init_app(app, database)
 
             return migrate

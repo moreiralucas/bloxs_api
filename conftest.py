@@ -23,7 +23,7 @@ def pessoa():
     """Create Pessoa Model"""
     pessoa_obj: Pessoa = Pessoa(
         nome="Fulano de Tal",
-        cpf="71966618077",
+        cpf="81158747012",
         data_nascimento="1988-01-01",
     )
     pessoa_obj.save()
