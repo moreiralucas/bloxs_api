@@ -14,9 +14,26 @@ To acess the container, run:
 
 # Database
 
-To create the database, run this command:
+To migrate the database, run this command:
 ```
-flask db init
-flask db migrate -m "Initial migration."
 flask db upgrade
 ```
+
+If there are new changes in models, run again:
+```
+flask db migrate -m "Another migration."
+flask db upgrade
+```
+
+To add dummy data, access the flask shell:
+```flask shell``` then run:
+```python
+from scripts import insert_dummy_data
+insert_dummy_data()
+```
+
+This will add the dummy data in database.
+
+# Tests
+
+To run all tests, access the container and run: ```pytests tests/```.
