@@ -2,8 +2,10 @@
 from apiflask import APIFlask
 from models import db
 from utils import create_app, init_database
+from flask_cors import CORS
 
 app: APIFlask = create_app(db)
+CORS(app)
 migrate = init_database(app, db)
 
 # pylint: disable=wrong-import-position,unused-import
