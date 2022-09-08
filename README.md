@@ -3,37 +3,33 @@
 Full-Stack Developer (Python/Flask) - Bloxs Challenge
 
 
-First of all, create an environment with ```python3 -m venv .venv```, active with ```source .venv/bin/activate``` then install the dependencies ```pip install -r requirements.txt```
-
-Start the container with database:
+Start the containers:
 ```docker-compose up -d```
 
 To acess the container, run:
 ```docker exec -it flask_app bash```
 
+Then, inside the container, run ```flask db upgrade``` to apply the migrations.
 
-# Database
+After apply the migrations, it's necessary add dummy data in database. To do this, access the flask shell:
 
-To migrate the database, run this command:
-```
-flask db upgrade
-```
-
-If there are new changes in models, run again:
-```
-flask db migrate -m "Another migration."
-flask db upgrade
-```
-
-To add dummy data, access the flask shell:
 ```flask shell``` then run:
 ```python
 from scripts import insert_dummy_data
 insert_dummy_data()
 ```
 
-This will add the dummy data in database.
+
+# Database
+
+
+If there are new changes in models, run the following commands (inside the container flask_app):
+```
+flask db migrate -m "Another migration."
+flask db upgrade
+```
+
 
 # Tests
 
-To run all tests, access the container and run: ```pytests tests/```.
+To run all tests, access the container flask_app and run: ```pytests tests/```.
