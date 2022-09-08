@@ -14,8 +14,14 @@ def test_deposit_in_account(app, conta: Conta):
     client = app.test_client()
     url: str = f"/account/{conta.id_conta}/deposit"
 
-    data: Dict = {"valor": 100.0}
+    data: Dict = {"valor": 100.15}
 
     response: TestResponse = client.put(url, json=data)
     assert response.status_code == 200
     assert response.json["message"] == "success"
+
+    url_balance: str = f"/account/{conta.id_conta}/balance"
+
+    response: TestResponse = client.get(url_balance)
+    assert response.status_code == 200
+    assert response.json["saldo"] == 100.15

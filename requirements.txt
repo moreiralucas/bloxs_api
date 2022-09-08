@@ -9,4 +9,3 @@ pytest==7.1.2
 coverage==6.4.3
 PyMySQL==1.0.2
 Flask-Cors==3.0.10
-

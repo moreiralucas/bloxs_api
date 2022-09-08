@@ -1,8 +1,8 @@
 """Start Flask Module"""
+from flask_cors import CORS
 from apiflask import APIFlask
 from models import db
 from utils import create_app, init_database
-from flask_cors import CORS
 
 app: APIFlask = create_app(db)
 CORS(app)

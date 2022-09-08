@@ -32,4 +32,4 @@ flask db upgrade
 
 # Tests
 
-To run all tests, access the container flask_app and run: ```pytests tests/```.
+To run all tests, access the container flask_app and run: ```pytest tests```.
